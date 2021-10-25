@@ -1,9 +1,10 @@
-import { useRef } from "react";
-import { useContext } from "react/cjs/react.development";
-import AuthContext from "../../store/auth-context";
+import { useRef, useContext } from "react";
+import { useHistory } from "react-router-dom";
 import classes from "./ProfileForm.module.css";
+import AuthContext from "../../store/auth-context";
 
 const ProfileForm = () => {
+  const history = useHistory();
   const newPasswordInputRef = useRef();
   const authCtx = useContext(AuthContext);
   const submitHandler = (event) => {
@@ -24,8 +25,9 @@ const ProfileForm = () => {
           "Content-Type": "application/json",
         },
       }
-    ).then(res=>{
+    ).then((res) => {
       // assumption: always succeed  (add the catch() later)
+      history.replace('/'); //redirect to starting page
     });
   };
   return (
